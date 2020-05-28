@@ -1,0 +1,46 @@
+plugins {
+	id 'org.springframework.boot' version '2.2.5.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+	id 'java'
+}
+
+group = 'com.ey.onboarding.oms'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations {
+	developmentOnly
+	runtimeClasspath {
+		extendsFrom developmentOnly
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter-web','org.apache.tomcat.embed:tomcat-embed-jasper'
+	,'org.springframework.boot:spring-boot-starter-data-jpa')
+     compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.7.0'
+     compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.7.0'
+     compile group: 'org.springframework.boot', name: 'spring-boot-devtools', version: '2.2.2.RELEASE'
+     // https://mvnrepository.com/artifact/org.apache.poi/poi
+
+	//Apache POI
+	compile('org.apache.poi:poi:+')
+	compile('org.apache.poi:poi-ooxml:+')
+     
+	
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+	runtimeOnly 'mysql:mysql-connector-java'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+	
+
+}
+
+test {
+	useJUnitPlatform()
+}
